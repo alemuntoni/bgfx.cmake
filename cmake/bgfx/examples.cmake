@@ -36,7 +36,7 @@ function(add_bgfx_shader FILE FOLDER)
 
 		if(WIN32)
 			# dx11
-			set(DX11_OUTPUT ${BGFX_DIR}/examples/runtime/shaders/dx11/${FILENAME}.bin)
+			set(DX11_OUTPUT ${BGFX_DIR}/examples/runtime/shaders/dxbc/${FILENAME}.bin)
 			if(NOT "${TYPE}" STREQUAL "COMPUTE")
 				_bgfx_shaderc_parse(
 					DX11 ${COMMON} WINDOWS
@@ -67,7 +67,7 @@ function(add_bgfx_shader FILE FOLDER)
 		# essl
 		if(NOT "${TYPE}" STREQUAL "COMPUTE")
 			set(ESSL_OUTPUT ${BGFX_DIR}/examples/runtime/shaders/essl/${FILENAME}.bin)
-			_bgfx_shaderc_parse(ESSL ${COMMON} ANDROID PROFILE 100_es OUTPUT ${ESSL_OUTPUT})
+			_bgfx_shaderc_parse(ESSL ${COMMON} ANDROID PROFILE 320_es OUTPUT ${ESSL_OUTPUT})
 			list(APPEND OUTPUTS "ESSL")
 			set(OUTPUTS_PRETTY "${OUTPUTS_PRETTY}ESSL, ")
 		endif()
@@ -91,10 +91,10 @@ function(add_bgfx_shader FILE FOLDER)
 		endif()
 
 		# wgsl
-		set(WGSL_OUTPUT ${BGFX_DIR}/examples/runtime/shaders/wgsl/${FILENAME}.bin)
-		_bgfx_shaderc_parse(WGSL ${COMMON} LINUX PROFILE wgsl OUTPUT ${WGSL_OUTPUT})
-		list(APPEND OUTPUTS "WGSL")
-		set(OUTPUTS_PRETTY "${OUTPUTS_PRETTY}WGSL")
+		# set(WGSL_OUTPUT ${BGFX_DIR}/examples/runtime/shaders/wgsl/${FILENAME}.bin)
+		# _bgfx_shaderc_parse(WGSL ${COMMON} LINUX PROFILE wgsl OUTPUT ${WGSL_OUTPUT})
+		# list(APPEND OUTPUTS "WGSL")
+		# set(OUTPUTS_PRETTY "${OUTPUTS_PRETTY}WGSL")
 
 		foreach(OUT ${OUTPUTS})
 			list(APPEND OUTPUT_FILES ${${OUT}_OUTPUT})
